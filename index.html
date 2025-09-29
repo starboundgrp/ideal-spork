@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preset Unlock</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%);
+      color: #111;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fffbe6;
+      border: 2px solid #ffb347;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(255, 179, 71, 0.15);
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 350px;
+      text-align: center;
+    }
+    h1 {
+      color: #ff9900;
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+    }
+    .options {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .unlock-btn {
+      background: #ffb347;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .unlock-btn:hover {
+      background: #ff9900;
+      color: #fff;
+    }
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .input-row input {
+      padding: 0.6rem;
+      border: 1.5px solid #ffb347;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      width: 90%;
+      max-width: 220px;
+    }
+    .success {
+      color: #388e3c;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    .error {
+      color: #d32f2f;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter your username and password to unlock your preset</h1>
+    <div class="options">
+      <a class="unlock-btn" href="https://social-unlock.com/vanem" target="_blank">Go here</a>
+      <form class="password-form" onsubmit="return checkPassword(event)">
+        <div class="input-row">
+          <input type="text" id="username" placeholder="Enter your username..." required />
+          <input type="password" id="password" placeholder="Enter password..." required />
+        </div>
+        <button type="submit" class="unlock-btn">Unlock</button>
+      </form>
+      <div id="message"></div>
+      <a class="unlock-btn" id="userLink" href="#" target="_blank" style="display:none;">Unlock Mega Link</a>
+    </div>
+  </div>
+  <script>
+    function checkPassword(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value.trim().toLowerCase();
+      const password = document.getElementById('password').value.trim();
+      const message = document.getElementById('message');
+      const userLink = document.getElementById('userLink');
+      userLink.style.display = 'none';
+
+      if (username === 'dr3files' && password === 'moonlight') {
+        message.textContent = 'Success! Click the button below to access your Mega preset.';
+        message.className = 'success';
+        userLink.href = 'https://mega.nz/folder/CE8iXRyb#LSZU8b1pTezPYRSyV03BMQ';
+        userLink.style.display = 'inline-block';
+      } else if (username !== 'dr3files') {
+        message.textContent = 'Username not found.';
+        message.className = 'error';
+      } else {
+        message.textContent = 'Incorrect password.';
+        message.className = 'error';
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
